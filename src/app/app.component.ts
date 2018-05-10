@@ -8,11 +8,8 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  courses: Observable<any[]>;
+  courses$: Observable<any[]>;
   constructor(private db: AngularFireDatabase) {
-    this.db
-      .list('/courses')
-      .valueChanges()
-      .subscribe(courses => console.log(courses));
+    this.courses$ = this.db.list('/courses').valueChanges();
   }
 }
